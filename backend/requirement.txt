@@ -1,0 +1,5 @@
+nltk 
+bentoml
+scikit-learn
+numpy 
+pandas
