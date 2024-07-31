@@ -1,12 +1,10 @@
-import httpx
-from pydantic import BaseModel
+import requests
 
-class News(BaseModel):
-    text: str
+BENTO_SERVICE_URL = "http://localhost:3000/predict"
 
-BENTO_SERVICE_URL = "http://bentoml:5000/predict"
+def predict_news(input: dict):
 
-async def predict_news(input: dict):
-    async with httpx.AsyncClient() as client:
-        response = await client.post(BENTO_SERVICE_URL, json=input)
-        return response.json()
+    print("news_controller:",input,type(input))
+    response = requests.post(BENTO_SERVICE_URL, json={"input":input})
+    print("news_controller:",response.json())
+    return response.json()

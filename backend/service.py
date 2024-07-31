@@ -33,7 +33,7 @@ class Prediction:
     @bentoml.api
     async def predict(
         self,
-        input: Input,
+        input: dict,
     ):
         '''
         Defining an API endpoint to serve incoming FAST API requests 
@@ -44,7 +44,8 @@ class Prediction:
             to utilize keys.Then preprocess the data and apply stemming in order to 
             vectorize the input and make preditions. 
             '''
-            df = pd.DataFrame([input.model_dump()])
+            print("service.py:",input)
+            df = pd.DataFrame([input])
             processed_text = preprocess_data(df)
 
             X_test = processed_text['content']
